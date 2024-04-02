@@ -16,7 +16,7 @@ def get_page(page=1, page_size=10) -> int:
     '''
     assert isinstance(page, int) and page > 0
     assert isinstance(page_size, int) and page_size > 0
-    with open('0x00-pagination/data.csv', 'r') as f:
+    with open('Popular_Baby_Names.csv', 'r') as f:
         reader = csv.reader(f)
         dataset = [row for row in reader]
         start, end = index_range(page, page_size)
