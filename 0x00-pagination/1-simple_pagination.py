@@ -6,7 +6,7 @@ from typing import List, Tuple
 
 index_range = __import__('0-simple_helper_function').index_range
 
-def get_page(page=1, page_size=10) -> int:
+def get_page(self, page:int = 1, page_size: int = 10) -> List[List]:
     '''return a page of the dataset
     Attributes:
         assert - verify both arguments are integers greater than 0
@@ -14,12 +14,18 @@ def get_page(page=1, page_size=10) -> int:
         the appropriate page of the dataset
     Return - if the input arguments are out of range (empty list)
     '''
-    assert isinstance(page, int) and page > 0
-    assert isinstance(page_size, int) and page_size > 0
-    with open('Popular_Baby_Names.csv', 'r') as f:
-        reader = csv.reader(f)
-        dataset = [row for row in reader]
-        start, end = index_range(page, page_size)
-        return dataset[start:end]
+    assert type(page) == int
+    assert type(page_size) == int
+    assert page > 0
+    assert page_size > 0
+
+    start_index, end_index = index_range(page, page_size)
+    if ((len(self.dataset()) < start_index) or (len(self.dataset()) < end_index)):
+        return []
+    
+    paginated_names = []
+    for i in range(start_index, end_index):
+        paginated_names.append(self.dataset()[i])
+    return paginated_names
     
     
