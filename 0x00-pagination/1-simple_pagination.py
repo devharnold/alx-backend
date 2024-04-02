@@ -4,7 +4,7 @@ import csv
 import math
 from typing import List, Tuple
 
-from simple_helper_function import index_range
+index_range = __import__('0-simple_helper_function').index_range
 
 def get_page(page=1, page_size=10) -> int:
     '''return a page of the dataset
