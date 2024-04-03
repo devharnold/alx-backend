@@ -28,8 +28,7 @@ class FIFOCache(BaseCaching):
             if key not in self.cache:
                 discard = next(iter(self.cache))
             del self.cache[discard]
-
-        self.cache[key] = item
+            self.cache[key] = item
 
     def get(self, key):
         """
