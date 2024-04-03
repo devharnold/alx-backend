@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """basic cache module"""
-from typing import List
+
 
 BaseCaching = __import__('base_caching').BaseCaching
 
