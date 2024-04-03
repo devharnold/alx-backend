@@ -27,7 +27,7 @@ class FIFOCache(BaseCaching):
         if len(self.cache) >= self.capacity:
             if key not in self.cache:
                 discard = next(iter(self.cache))
-                del self.cache[discard]
+            del self.cache[discard]
 
         self.cache[key] = item
 
