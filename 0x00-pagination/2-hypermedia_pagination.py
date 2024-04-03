@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-'''hypermedia pagination'''
+"""hypermedia pagination module"""
 import math
 from typing import List, Tuple, Dict
 
 index_range = __import__('0-simple_helper_function').index_range
 
 def get_hyper(self, page:int = 1, page_size: int = 10):
-    '''returns a dictionary of hypermedia key-value pairs'''
+    """returns a dictionary of hypermedia key-value pairs"""
     start_index, end_index = index_range(page, page_size)
     prev_page= None
     if (page > 1):
