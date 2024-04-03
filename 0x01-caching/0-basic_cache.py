@@ -2,7 +2,7 @@
 """basic cache module"""
 from typing import List
 
-base_caching = __import__('base_caching').basecaching
+BaseCaching = __import__('base_caching').BaseCaching
 
 class BasicCache(BaseCaching):
     """
