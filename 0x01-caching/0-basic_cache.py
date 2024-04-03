@@ -28,8 +28,6 @@ class BasicCache(BaseCaching):
         Must return the value in `self.cache_data` linked to key
         Return None: if key -> None or not existing in self.cache_data
         """
-        for key, items in sorted(self.cache_data.keys()):
-            if (key) != self.cache_data():
-                return None
-            if (key) is None:
-                return None
+        if key in self.cache:
+            return self.cache[key]
+        return None
