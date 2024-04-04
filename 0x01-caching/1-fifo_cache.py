@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""fifo cache module"""
+"""First-In-First-Out caching module"""
 from collections import OrderedDict
-
-BaseCaching = __import__('base_caching').BaseCaching
-
+from base_caching import BaseCaching
 class FIFOCache(BaseCaching):
     """class caching system"""
     def __init__(self):

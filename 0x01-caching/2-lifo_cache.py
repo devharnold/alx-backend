@@ -1,41 +1,35 @@
 #!/usr/bin/env python3
-"""lifo cache module"""
+"""Last-In First-Out caching module.
+"""
 from collections import OrderedDict
 
-BaseCaching = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
+
 
 class LIFOCache(BaseCaching):
-    """class LIFOCache"""
-    def __init__(self, capacity):
-        """initialize"""
+    """Represents an object that allows storing and
+    retrieving items from a dictionary with a LIFO
+    removal mechanism when the limit is reached.
+    """
+    def __init__(self):
+        """Initializes the cache.
+        """
         super().__init__()
-        self.capacity = capacity
-        self.cache = OrderedDict
+        self.cache_data = OrderedDict()
 
-        self.cache_data = {}
-
-    def put(self, key, item) -> dict:
+    def put(self, key, item):
+        """Adds an item in the cache.
         """
-        must assign to the dictionary `self.cache_data` the item value for the key `key`
-        if `key` or `item` is None -> do nothing
-        if number of items in self.cache_data > `BaseCaching.MAX_ITEMS`:
-            ->must discard the last item put in cache(LIFO algorithm)
-            ->must print `DISCARD` with the key dicarded
-        Attributes:
-            item: element
-            key: caching steps
-        """
-        if len(self.cache) >= self.capacity:
-            if(key, item)not in self.cache:
-                discard = next(iter(self.cache))
-                del self.cache[discard]
-            self.cache[key] = item
+        if key is None or item is None:
+            return
+        if key not in self.cache_data:
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+                last_key, _ = self.cache_data.popitem(True)
+                print("DISCARD:", last_key)
+        self.cache_data[key] = item
+        self.cache_data.move_to_end(key, last=True)
 
     def get(self, key):
+        """Retrieves an item by key.
         """
-        must return the value in `self.cache_data` linked to key
-        return None if key is none
-        """
-        if key in self.cache:
-            return self.cache[key]
-        return None
+        return self.cache_data.get(key, None)
