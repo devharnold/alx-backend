@@ -6,14 +6,10 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 class FIFOCache(BaseCaching):
     """class caching system"""
-    def __init__(self, capacity):
+    def __init__(self):
         """Initialize class fifocache"""
         super().__init__()
-        self.capacity = capacity
-        self.cache = OrderedDict()
-
-        self.cache_data = {}
-        
+        self.cache_data = OrderedDict()
 
     def put(self, key, item):
         """
@@ -26,17 +22,16 @@ class FIFOCache(BaseCaching):
             item: element
             key: caching steps
         """
-        if len(self.cache) >= self.capacity:
-            if key not in self.cache:
-                discard = next(iter(self.cache))
-            del self.cache[discard]
-            self.cache[key] = item
+        if key is None or item is None:
+            return
+        self.cache_data[key] = item
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            first_key, _ = self.cache_data.popitem(False)
+            print("DISCARD:", first_key)
 
     def get(self, key):
         """
         must return the value in `self.cache_data` linked to key
         return None if key is none
         """
-        if key in self.cache:
-            return self.cache[key]
-        return None
+        return self.cache_data.get(key, None)
