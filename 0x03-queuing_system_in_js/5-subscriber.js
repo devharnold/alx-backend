@@ -9,7 +9,7 @@ console.log('Redis has connected to the server');
 
 client.subscribe('holberton school');
 client.on('message', (channel, message) => {
-    console.log('Received message on channel ${channel}: ${message}');
+    console.log(`Received message on channel ${channel}: ${message}`);
     if (message === 'KILL_SERVER') {
         client.unsubscribe();
         client.quit();

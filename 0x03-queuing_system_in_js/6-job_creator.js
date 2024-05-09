@@ -7,11 +7,11 @@ var job = queue.create('push_notification_code', {
 });
 
 job.on('complete', function(result){
-    console.log(`Notification job created ${jobid}`);
+    console.log(`Notification job: ${jobid} created`);
 })
 .on('complete', function(result){
-    console.log(`Notification job completed ${jobid}`)
+    console.log(`Notification job: ${jobid} completed`)
 })
-.on('failing', function(result){
-    console.log(`Notification job failed`)
+.on('failed', function(result){
+    console.log(`Notification job: ${jobid} failed`)
 });

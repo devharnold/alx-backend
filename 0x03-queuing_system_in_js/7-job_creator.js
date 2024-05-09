@@ -51,7 +51,7 @@ const jobs = [
 function createJobs(jobs) {
     jobs.forEach(job => {
         const jobData = { job };
-        const newJob =queue.create('push_notification_code_2', job_data)
+        const newJob = queue.create('push_notification_code_2', job_data)
             .save(function(err) {
                 if(!err){
                     console.log(`Notification job created: ${newJob.Id}`);
